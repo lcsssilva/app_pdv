@@ -91,7 +91,7 @@ class HomeView extends GetView<HomeController> {
                     }
                   },
                   style: ElevatedButton.styleFrom(
-                      minimumSize: const Size(15, 70), primary: styleColorBlue),
+                      minimumSize: const Size(15, 70), backgroundColor: styleColorBlue),
                   child: Obx(
                     () => Text(
                       "Cobrar\n" +
@@ -213,7 +213,7 @@ class HomeView extends GetView<HomeController> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 50),
-                    primary: Colors.transparent,
+                    backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
                   ),
                   onPressed: () {
@@ -622,7 +622,7 @@ class HomeView extends GetView<HomeController> {
           onPressed: () {
             Get.back();
           },
-          style: ElevatedButton.styleFrom(primary: styleColorBlue),
+          style: ElevatedButton.styleFrom(backgroundColor: styleColorBlue),
           child: const Text("CONTINUAR"),
         ));
   }

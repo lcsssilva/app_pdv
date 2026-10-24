@@ -1,6 +1,6 @@
 import 'package:lustore/app/core/model.dart';
 import 'package:lustore/app/model/category.dart';
-import 'package:http/http.dart' as http;
+import 'package:lustore/app/core/api_client.dart';
 import 'dart:convert';
 
 class Product extends Model{
@@ -52,7 +52,7 @@ class Product extends Model{
 
     Future nextProduct(_page) async{
       String token = await auth.refreshJwt();
-      final response = await http.get(
+      final response = await client.get(
         Uri.parse(_page),
         headers: <String, String>{
           'Accept' : 'application/json',

@@ -78,7 +78,7 @@ class RegisterProductView extends GetView<RegisterProductController> {
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           minimumSize: const Size(100, 50),
-                          primary: Colors.transparent,
+                          backgroundColor: Colors.transparent,
                           shadowColor: Colors.transparent,
                         ),
                         onPressed: () {

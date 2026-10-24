@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:lustore/app/api/api_auth.dart';
 import 'package:http/http.dart' as http;
+import 'package:lustore/app/core/api_client.dart';
 import 'package:lustore/app/boot/config.dart';
 
 class ApiUpload  {
@@ -23,7 +24,7 @@ class ApiUpload  {
             )
         );
 
-        var response = await request.send();
+        var response = await client.send(request);
 
     if (response.statusCode == 200) {
       var _image = await response.stream.transform(utf8.decoder).join();

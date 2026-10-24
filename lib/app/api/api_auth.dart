@@ -1,6 +1,6 @@
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
+import 'package:lustore/app/core/api_client.dart';
 import 'package:get/get.dart';
 import 'package:lustore/app/boot/config.dart';
 import 'package:lustore/app/model/auth.dart';
@@ -15,7 +15,7 @@ class ApiAuth implements IApiAuth{
 
   @override
   Future login(Auth data) async {
-    final response = await http.post(Uri.parse(url + "login"),
+    final response = await client.post(Uri.parse(url + "login"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -38,7 +38,7 @@ class ApiAuth implements IApiAuth{
 
   @override
   Future forget(Auth data) async{
-    final response = await http.post(Uri.parse(url + "forget"),
+    final response = await client.post(Uri.parse(url + "forget"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
@@ -60,7 +60,7 @@ class ApiAuth implements IApiAuth{
     if (!DateTime.now().isAfter(expirationDate)) {
       return token;
     }
-    final response = await http.post(
+    final response = await client.post(
       Uri.parse(url + "refresh"),
       headers: <String, String>{
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -81,7 +81,7 @@ class ApiAuth implements IApiAuth{
   @override
   Future logout() async {
     String token = await refreshJwt();
-    final response = await http.post(
+    final response = await client.post(
       Uri.parse(url + "logout"),
       headers: <String, String>{'Authorization': 'Bearer ' + token},
     );

@@ -130,7 +130,7 @@ class RegisterCategoryView extends GetView<RegisterCategoryController> {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 50),
-                    primary: Colors.transparent,
+                    backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
                   ),
                   onPressed: () {
@@ -186,7 +186,7 @@ class RegisterCategoryView extends GetView<RegisterCategoryController> {
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(100, 50),
-                      primary: Colors.transparent,
+                      backgroundColor: Colors.transparent,
                       shadowColor: Colors.transparent,
                     ),
                     onPressed: () {

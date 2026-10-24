@@ -2,16 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'app/routes/app_pages.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
 
   Intl.defaultLocale = 'pt_BR';
   runApp(
     GetMaterialApp(
       title: "Application",
       theme: ThemeData(
+          useMaterial3: false,
           fontFamily:  GoogleFonts.aleo().fontFamily,
           inputDecorationTheme: const InputDecorationTheme(
             focusedBorder: borderColorFocus,

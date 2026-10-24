@@ -38,23 +38,23 @@ class ReportsView extends GetView<ReportsController> {
     );
   }
   Widget bodyReports() {
-    return StaggeredGridView.count(
-      crossAxisCount: 4,
-      mainAxisSpacing: 4,
-      crossAxisSpacing: 4,
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(4),
-      children: <Widget>[
-        monthlyMoney(),
-        categoriesSales(),
-        productSales(),
-        yearMoney(),
-      ],
-      staggeredTiles: const [
-        StaggeredTile.count(4, 5),
-        StaggeredTile.count(4, 3),
-        StaggeredTile.count(4, 3),
-        StaggeredTile.count(4, 3),
-      ],
+      child: StaggeredGrid.count(
+        crossAxisCount: 4,
+        mainAxisSpacing: 4,
+        crossAxisSpacing: 4,
+        children: <Widget>[
+          StaggeredGridTile.count(
+              crossAxisCellCount: 4, mainAxisCellCount: 5, child: monthlyMoney()),
+          StaggeredGridTile.count(
+              crossAxisCellCount: 4, mainAxisCellCount: 3, child: categoriesSales()),
+          StaggeredGridTile.count(
+              crossAxisCellCount: 4, mainAxisCellCount: 3, child: productSales()),
+          StaggeredGridTile.count(
+              crossAxisCellCount: 4, mainAxisCellCount: 3, child: yearMoney()),
+        ],
+      ),
     );
   }
 

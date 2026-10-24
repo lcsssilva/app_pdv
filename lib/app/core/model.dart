@@ -1,5 +1,5 @@
 import 'package:lustore/app/model/auth.dart';
-import 'package:http/http.dart' as http;
+import 'package:lustore/app/core/api_client.dart';
 import 'package:lustore/app/boot/config.dart';
 import 'dart:convert';
 
@@ -13,7 +13,7 @@ abstract class Model {
 
   Future<dynamic> index() async {
     String token = await auth.refreshJwt();
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse(url + action),
       headers: <String, String>{
         'Accept' : 'application/json',
@@ -30,7 +30,7 @@ abstract class Model {
 
   Future<dynamic> store(data) async {
     String token = await auth.refreshJwt();
-    final response = await http.post(
+    final response = await client.post(
       Uri.parse(url + action),
       headers: <String, String>{
         'Accept' : 'application/json',
@@ -52,7 +52,7 @@ abstract class Model {
 
   Future<dynamic> show(id) async {
     String token = await auth.refreshJwt();
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse(url + action + "/" + id.toString()),
       headers: <String, String>{
         'Accept' : 'application/json',
@@ -69,7 +69,7 @@ abstract class Model {
 
   Future<dynamic> update(data, id) async {
     String token = await auth.refreshJwt();
-    final response = await http.put(
+    final response = await client.put(
       Uri.parse(url + action + "/" + id.toString()),
       headers: <String, String>{
         'Accept' : 'application/json',
@@ -87,7 +87,7 @@ abstract class Model {
 
   Future<dynamic> destroy(id) async {
     String token = await auth.refreshJwt();
-    final response = await http.delete(
+    final response = await client.delete(
       Uri.parse(url + action + "/" + id.toString()),
       headers: <String, String>{
         'Accept' : 'application/json',

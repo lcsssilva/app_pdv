@@ -67,7 +67,7 @@ class HomeListerSalesProductsView
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 50),
-                    primary: Colors.transparent,
+                    backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
                   ),
                   onPressed: () {
@@ -124,13 +124,8 @@ class HomeListerSalesProductsView
   Widget list(_product, context, index) {
     return SizedBox(
       height: 60,
-      child: StaggeredGridView.count(
-        primary: false,
+      child: StaggeredGrid.count(
         crossAxisCount: 2,
-        staggeredTiles: const [
-          StaggeredTile.fit(1),
-          StaggeredTile.fit(1),
-        ],
         children: <Widget>[
           nameProduct(_product),
           infoProduct(_product, context, index),
@@ -194,7 +189,7 @@ class HomeListerSalesProductsView
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 50),
-                    primary: Colors.transparent,
+                    backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
                   ),
                   onPressed: () {

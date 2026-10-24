@@ -1,4 +1,3 @@
-import 'package:cool_alert/cool_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -49,56 +48,71 @@ const enableBorderInline = UnderlineInputBorder(
 
 
 void loading(context) {
-  CoolAlert.show(
+  showDialog(
       context: context,
-      width: 400,
-      type: CoolAlertType.loading,
-      text: 'Carregando....',
-      animType: CoolAlertAnimType.scale,
-      barrierDismissible: false);
+      barrierDismissible: false,
+      builder: (_) => const AlertDialog(
+            content: Row(children: [
+              CircularProgressIndicator(),
+              SizedBox(width: 20),
+              Text('Carregando....'),
+            ]),
+          ));
 }
 
 void confirmAlert(context,String text){
-  CoolAlert.show(
+  showDialog(
     context: context,
-    type: CoolAlertType.confirm,
-    text: text,
-    confirmBtnText: 'SIM',
-    cancelBtnText: 'NÃO',
-    confirmBtnColor: Colors.green,
+    builder: (_) => AlertDialog(
+      content: Text(text, textAlign: TextAlign.center),
+      actions: [
+        TextButton(onPressed: () => Get.back(), child: const Text('NÃO')),
+        ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+            onPressed: () => Get.back(),
+            child: const Text('SIM')),
+      ],
+    ),
   );
 }
 
 void error(context,Map text) {
-  CoolAlert.show(
+  showDialog(
       context: context,
-      width: 400,
-      loopAnimation: false,
-      type: CoolAlertType.error,
-      text: text.map((key, value) => value[0]).toString(),
-      title: "Error!",
-      animType: CoolAlertAnimType.scale,
-      backgroundColor: const Color(0xCD000000),
-      barrierDismissible: false);
+      barrierDismissible: false,
+      barrierColor: const Color(0xCD000000),
+      builder: (_) => AlertDialog(
+            icon: const Icon(Icons.error_outline, color: Colors.red, size: 60),
+            title: const Text("Error!"),
+            content: Text(text.map((key, value) => value[0]).toString(),
+                textAlign: TextAlign.center),
+            actions: [
+              ElevatedButton(
+                  onPressed: () => Get.back(), child: const Text('Ok')),
+            ],
+          ));
 }
 
 
 void success(String text,context,{action}) {
-  CoolAlert.show(
-      onConfirmBtnTap: () {
-        if (action == "back") {
-          Get.back();
-          Get.back();
-        }else{
-          Get.back();
-        }
-      },
+  showDialog(
       context: context,
-      text: text,
-      width: 400,
-      type: CoolAlertType.success,
-      animType: CoolAlertAnimType.scale,
-      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-      barrierDismissible: false);
+      barrierDismissible: false,
+      builder: (_) => AlertDialog(
+            icon: const Icon(Icons.check_circle_outline,
+                color: Colors.green, size: 60),
+            content: Text(text, textAlign: TextAlign.center),
+            actions: [
+              ElevatedButton(
+                  onPressed: () {
+                    if (action == "back") {
+                      Get.back();
+                      Get.back();
+                    }else{
+                      Get.back();
+                    }
+                  },
+                  child: const Text('Ok')),
+            ],
+          ));
 }
-

@@ -1,4 +1,4 @@
-import 'package:http/http.dart' as http;
+import 'package:lustore/app/core/api_client.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:lustore/app/boot/config.dart';
@@ -10,7 +10,7 @@ class ApiReport  {
 
   Future<dynamic> getReportsSales() async {
     String token = await user.refreshJwt();
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse(url + "report/sale"),
       headers: <String, String>{
         'Authorization': 'Bearer ' + token
@@ -26,7 +26,7 @@ class ApiReport  {
 
   Future<dynamic> getCategoriesAndProductsBestSelling() async {
     String token = await user.refreshJwt();
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse(url +  "report/product/category"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
@@ -42,7 +42,7 @@ class ApiReport  {
 
   Future<dynamic> annualProfit() async {
     String token = await user.refreshJwt();
-    final response = await http.get(
+    final response = await client.get(
       Uri.parse(url + "report/sale/annual"),
       headers: <String, String>{
         'Authorization': 'Bearer ' + token
